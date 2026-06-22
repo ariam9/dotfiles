@@ -133,7 +133,7 @@ binds {
     Super+Alt+L allow-when-locked=true { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
 
     // ── Clipboard ─────────────────────────────────────────────────────────────
-    Mod+V { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
+    Mod+V { spawn-sh "cliphist list | rofi -dmenu -theme /home/ariam/.config/rofi/config.rasi | cliphist decode | wl-copy"; }
 
     // ── Close window ─────────────────────────────────────────────────────────
     Mod+Q repeat=false { close-window; }
