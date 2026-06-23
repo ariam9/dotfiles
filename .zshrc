@@ -14,7 +14,11 @@ setopt INC_APPEND_HISTORY    # write to history immediately, not on exit
 # ── COMPLETION ───────────────────────────────────────────────────────────────
 
 autoload -Uz compinit
-compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 setopt AUTO_MENU             # show completion menu on tab
 setopt COMPLETE_IN_WORD      # complete from both ends of a word
