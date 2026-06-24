@@ -20,6 +20,8 @@ else
   compinit -C
 fi
 
+compdef dots=git
+
 setopt AUTO_MENU             # show completion menu on tab
 setopt COMPLETE_IN_WORD      # complete from both ends of a word
 setopt ALWAYS_TO_END         # move cursor to end after completion
