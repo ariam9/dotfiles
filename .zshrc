@@ -46,8 +46,10 @@ bindkey '^[[3~' delete-char              # delete key
 export EDITOR=nano           # change to nvim if you use it
 export COLORTERM=truecolor
 export TERM=xterm-256color
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"  # colored man pages via bat
 
+# colored man pages via bat
+export MANPAGER="sh -c 'col -bx | bat --language=man --style=plain'"
+export MANROFFOPT="-c"
 
 # ── ALIASES ──────────────────────────────────────────────────────────────────
 
