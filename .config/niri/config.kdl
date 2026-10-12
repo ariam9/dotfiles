@@ -72,7 +72,7 @@ spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 //modified suspend
 //spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "systemctl suspend" "before-sleep" "swaylock -f"
-spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "$HOME/.local/bin/lock-and-suspend.sh" "before-sleep" "swaylock -f"
+spawn-at-startup "swayidle" "-w" "timeout" "180" "swaylock -f" "timeout" "300" "$HOME/.local/bin/lock-and-suspend.sh" "before-sleep" "swaylock -f"
 
 
 // ── GENERAL ──────────────────────────────────────────────────────────────────
