@@ -62,7 +62,7 @@ layout {
 
 // ── AUTOSTART ────────────────────────────────────────────────────────────────
 
-spawn-at-startup "waybar" "-h" "hidden"
+spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "sh" "-c" "$HOME/.local/bin/wallpaper restore"
@@ -86,6 +86,12 @@ animations {}
 
 // ── WINDOW RULES ─────────────────────────────────────────────────────────────
 
+//for all rofi windows
+layer-rule {
+    match namespace="rofi"
+    place-within-backdrop true
+}
+
 // Rounded corners on all windows
 window-rule {
     geometry-corner-radius 6
@@ -101,6 +107,12 @@ window-rule {
 // Firefox picture-in-picture as floating
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// bluetooth in alacritty
+window-rule {
+    match app-id="bluetui"
     open-floating true
 }
 
@@ -125,6 +137,7 @@ window-rule {
     match app-id="pavucontrol"
     open-floating true
 }
+
 window-rule {
     match app-id="nm-connection-editor"
     open-floating true
@@ -154,6 +167,9 @@ binds {
 
     // waybar toggle
     Mod+B hotkey-overlay-title="Toggle Waybar" { spawn "pkill" "-SIGUSR1" "waybar"; }
+
+    // bluetooth
+    Mod+Shift+N hotkey-overlay-title="Bluetooth: bluetui" { spawn "alacritty" "--class" "bluetui" "-e" "bluetui"; }
 
     // ── Lock screen ───────────────────────────────────────────────────────────
     Super+Alt+L allow-when-locked=true { spawn "swaylock" "-f"; }
