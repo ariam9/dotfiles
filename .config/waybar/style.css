@@ -1,0 +1,49 @@
+/* Catppuccin Mocha, matches rofi/mako/alacritty */
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+.modules-left, .modules-center, .modules-right {
+  background: #1e1e2e;
+  border: 2px solid #313244;
+  border-radius: 6px;
+  padding: 0 6px;
+}
+
+#workspaces button {
+  color: #6c7086;
+  padding: 0 8px;
+  background: transparent;
+}
+#workspaces button.active { color: #cba6f7; }
+#workspaces button.urgent { color: #f38ba8; }
+#workspaces button:hover  { background: #313244; }
+
+#window { color: #a6adc8; padding: 0 8px; }
+
+#clock, #mpris, #tray, #pulseaudio, #backlight,
+#network, #bluetooth, #battery {
+  padding: 0 8px;
+}
+
+#pulseaudio.muted, #network.disconnected, #bluetooth.off { color: #6c7086; }
+#battery.warning  { color: #f9e2af; }
+#battery.critical { color: #f38ba8; }
+#battery.charging { color: #a6e3a1; }
+#mpris { color: #cba6f7; }
+
+tooltip {
+  background: #1e1e2e;
+  border: 2px solid #cba6f7;
+  border-radius: 6px;
+}
+tooltip label { color: #cdd6f4; }
