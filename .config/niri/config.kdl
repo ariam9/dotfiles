@@ -62,14 +62,17 @@ layout {
 
 // ── AUTOSTART ────────────────────────────────────────────────────────────────
 
-spawn-at-startup "waybar"
+spawn-at-startup "waybar" "-h" "hidden"
 spawn-at-startup "mako"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "sh" "-c" "$HOME/.local/bin/wallpaper restore"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
-spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "systemctl suspend" "before-sleep" "swaylock -f"
+
+//modified suspend
+//spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "systemctl suspend" "before-sleep" "swaylock -f"
+spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "$HOME/.local/bin/lock-and-suspend.sh" "before-sleep" "swaylock -f"
 
 
 // ── GENERAL ──────────────────────────────────────────────────────────────────
@@ -143,18 +146,20 @@ binds {
     Mod+D      hotkey-overlay-title="Launcher: rofi"      { spawn "rofi" "-show" "drun" "-theme" "/home/ariam/.config/rofi/config.rasi"; }
     Mod+N      hotkey-overlay-title="Dialog: NetworkManager"    { spawn "nm-connection-editor"; }
     Mod+E      hotkey-overlay-title="Files: nemo"     { spawn "nemo" "--class=nemo"; }
-    Mod+B      hotkey-overlay-title="Browser: firefox"   { spawn "firefox"; }
 
     // ── Replacements for the old shell panels ─────────────────────────────────
-    Mod+S       hotkey-overlay-title="Audio: pavucontrol" { spawn "pavucontrol"; }
-    Mod+Shift+S hotkey-overlay-title="Power menu" { spawn-sh "$HOME/.local/bin/powermenu"; }
+    Mod+Shift+S hotkey-overlay-title="Audio: pavucontrol" { spawn "pavucontrol"; }
+    Mod+S       hotkey-overlay-title="Power menu" { spawn-sh "$HOME/.local/bin/powermenu"; }
     Mod+W       hotkey-overlay-title="Wallpaper picker" { spawn-sh "$HOME/.local/bin/wallpaper pick"; }
+
+    // waybar toggle
+    Mod+B hotkey-overlay-title="Toggle Waybar" { spawn "pkill" "-SIGUSR1" "waybar"; }
 
     // ── Lock screen ───────────────────────────────────────────────────────────
     Super+Alt+L allow-when-locked=true { spawn "swaylock" "-f"; }
 
     // ── Clipboard ─────────────────────────────────────────────────────────────
-    Mod+V { spawn-sh "cliphist list | rofi -dmenu -theme /home/ariam/.config/rofi/config.rasi | cliphist decode | wl-copy"; }
+    Mod+V { spawn-sh "cliphist list | rofi -dmenu -i -theme $HOME/.config/rofi/dmenu.rasi | cliphist decode | wl-copy"; }
 
     // ── Close window ─────────────────────────────────────────────────────────
     Mod+Q repeat=false { close-window; }
@@ -285,6 +290,6 @@ binds {
 // for lock on lid close
 switch-events {
     lid-close {
-        spawn "systemctl" "suspend";  // swayidle before-sleep hook locks the screen
+        spawn "swaylock" "-f";
     }
 }
