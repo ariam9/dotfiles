@@ -10,6 +10,8 @@ setopt HIST_VERIFY           # show command before executing from history
 setopt SHARE_HISTORY         # share history between terminal windows
 setopt INC_APPEND_HISTORY    # write to history immediately, not on exit
 
+# PATH
+export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$PATH"
 
 # ── COMPLETION ───────────────────────────────────────────────────────────────
 
@@ -123,3 +125,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6c7086'   # Catppuccin overlay1
 # ── PROMPT (starship) ────────────────────────────────────────────────────────
 
 eval "$(starship init zsh)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/ariam/.local/bin:$PATH"
